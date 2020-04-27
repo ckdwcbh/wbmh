@@ -5,11 +5,18 @@
 </template>
 
 <script>
+import { getHotSeatch } from '@/api/cartoon'
 export default {
-  name: 'seach'
+  name: 'seach',
+
+  created () {
+    getHotSeatch().then(res => {
+      console.log(res)
+    })
+  }
 }
 </script>
 
-<style>
+<style lang="scss" sscoped>
 
 </style>

@@ -11,10 +11,12 @@
         <div class="headerRight">
           <div class="sex" @click="sex" v-show="isSex"></div>
           <div class="sex2" @click="sex" v-show="!isSex"></div>
-          <a class="search" href="search.html?cpid=0">
-            <!-- <a href="search.html"></a> -->
-          </a>
-          <div class="user"></div>
+          <router-link to="/search">
+            <div class="search"></div>
+          </router-link>
+          <router-link to="/mine">
+            <div class="user"></div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -29,38 +31,46 @@
 
       <!-- menu -->
       <div class="home_menu">
-        <div class="home_menu_item">
-          <img
-            src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/daypub.7d71503a.png"
-            alt
-            class="menu_img"
-          />
-          <p class="menu_p">放送表</p>
-        </div>
-        <div class="home_menu_item">
-          <img
-            src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/catelog.3cfb4bb6.png"
-            alt
-            class="menu_img"
-          />
-          <p class="menu_p">分类</p>
-        </div>
-        <div class="home_menu_item">
-          <img
-            src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/rank.bfd0ebb0.png"
-            alt
-            class="menu_img"
-          />
-          <p class="menu_p">榜单</p>
-        </div>
-        <div class="home_menu_item">
-          <img
-            src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/ending.932e7864.png"
-            alt
-            class="menu_img"
-          />
-          <p class="menu_p">完结</p>
-        </div>
+        <router-link to="/daypub">
+          <div class="home_menu_item">
+            <img
+              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/daypub.7d71503a.png"
+              alt
+              class="menu_img"
+            />
+            <p class="menu_p">放送表</p>
+          </div>
+        </router-link>
+        <router-link to="/cate">
+          <div class="home_menu_item">
+            <img
+              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/catelog.3cfb4bb6.png"
+              alt
+              class="menu_img"
+            />
+            <p class="menu_p">分类</p>
+          </div>
+        </router-link>
+        <router-link to="rank">
+          <div class="home_menu_item">
+            <img
+              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/rank.bfd0ebb0.png"
+              alt
+              class="menu_img"
+            />
+            <p class="menu_p">榜单</p>
+          </div>
+        </router-link>
+        <router-link to="/comic_end">
+          <div class="home_menu_item">
+            <img
+              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/ending.932e7864.png"
+              alt
+              class="menu_img"
+            />
+            <p class="menu_p">完结</p>
+          </div>
+        </router-link>
       </div>
 
       <!-- 精品作品 -->
@@ -176,7 +186,11 @@
           <div class="home_recommend_more">更多&gt;</div>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div class="home_recommend_comic_two" v-for="item in hotSerial.slice(0 , 2)" :key="item.info_id">
+          <div
+            class="home_recommend_comic_two"
+            v-for="item in hotSerial.slice(0 , 2)"
+            :key="item.info_id"
+          >
             <div class="comic_cover_container_two" style="width: 100%;">
               <div class="comic_cover">
                 <img :src="item.image_ext_url" alt />
@@ -206,7 +220,10 @@
               </div>
               <div class="comic_cover_info">
                 <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{xiaobianRecommend[0].title}}</div>
+                  <div
+                    class="comic_cover_title"
+                    style="font-size: 14px;"
+                  >{{xiaobianRecommend[0].title}}</div>
                 </div>
                 <div
                   class="comic_cover_desc"
@@ -242,7 +259,11 @@
           <div class="home_recommend_more">更多&gt;</div>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div class="home_recommend_comic_three" v-for="item in weekRecommend.slice(0 , 3)" :key="item.info_id">
+          <div
+            class="home_recommend_comic_three"
+            v-for="item in weekRecommend.slice(0 , 3)"
+            :key="item.info_id"
+          >
             <div class="comic_cover_container_three" style="width: 100%;">
               <div class="comic_cover">
                 <img :src="item.image_ext_url" alt />
@@ -310,7 +331,8 @@ export default {
       this.newArrival = res.data.data.h5_recommend_female_new_arrival
       this.popularWorks = res.data.data.h5_recommend_female_popular_works
       this.weekRecommend = res.data.data.h5_recommend_female_week_recommend
-      this.xiaobianRecommend = res.data.data.h5_recommend_female_xiaobian_recommend
+      this.xiaobianRecommend =
+        res.data.data.h5_recommend_female_xiaobian_recommend
     })
   }
 }
@@ -321,10 +343,17 @@ html,
 body {
   background: #f8f8f8;
   overflow: auto;
+  max-width: 900px;
+  width: 100%;
+}
+.home{
+  display: flex;
+  height: 100%;
+  flex-direction: column
 }
 .header {
-  height: 44px;
   width: 100%;
+  height: 44px;
   border-bottom: 1px solid #e6e6e6;
   background: #fff;
   .headerLeft {
@@ -332,8 +361,7 @@ body {
   }
   .header_inner {
     width: 100%;
-    max-width: 900px;
-    position: fixed;
+    // position: fixed;
     z-index: 999;
     background: #fff;
   }
@@ -385,6 +413,7 @@ body {
 
 .main {
   padding-top: 10px;
+  flex: 1;
   overflow: auto;
 }
 
@@ -620,11 +649,12 @@ body {
   bottom: 8px;
   right: 8px;
   overflow: hidden;
+  display: flex;
   background-color: #fff;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  padding-top: 6px;
+  justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
   img {
     width: 20px;
