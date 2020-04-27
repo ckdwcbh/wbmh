@@ -77,7 +77,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">精品佳作</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/fineworks">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div class="home_recommend_comic">
@@ -120,7 +122,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">人气作品</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/popularWorks">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div
@@ -147,7 +151,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">最新上架</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/newArrival">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div
@@ -183,7 +189,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">热门连载</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/hotSerial">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div
@@ -210,7 +218,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">小编推荐</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/xiaobianRecommend">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div class="home_recommend_comic">
@@ -256,7 +266,9 @@
       <div class="recommend_block">
         <div class="home_recommend_header">
           <div class="home_recommend_title">本周推荐</div>
-          <div class="home_recommend_more">更多&gt;</div>
+          <router-link to="/weekRecommend">
+            <div class="home_recommend_more">更多&gt;</div>
+          </router-link>
         </div>
         <div class="home_recommend_comics threeClassic" v-if="showCard">
           <div

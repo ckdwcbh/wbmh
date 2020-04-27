@@ -10,6 +10,12 @@ import Mine from '../views/Mine'
 import Rank from '../views/Rank'
 import Register from '../views/Register'
 import Search from '../views/Search'
+import fineworks from '../views/fineworks'
+import hotserial from '../views/hotserial'
+import newarrival from '../views/newarrival'
+import popularworks from '../views/popularworks'
+import weekrecommend from '../views/weekrecommend'
+import xiaobianrecommend from '../views/xiaobianrecommend'
 
 Vue.use(VueRouter)
 
@@ -49,6 +55,30 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/fineworks',
+    component: fineworks
+  },
+  {
+    path: '/hotserial',
+    component: hotserial
+  },
+  {
+    path: '/newarrival',
+    component: newarrival
+  },
+  {
+    path: '/popularworks',
+    component: popularworks
+  },
+  {
+    path: '/weekrecommend',
+    component: weekrecommend
+  },
+  {
+    path: '/xiaobianrecommend',
+    component: xiaobianrecommend
   }
 ]
 
