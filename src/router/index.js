@@ -16,6 +16,7 @@ import newarrival from '../views/newarrival'
 import popularworks from '../views/popularworks'
 import weekrecommend from '../views/weekrecommend'
 import xiaobianrecommend from '../views/xiaobianrecommend'
+import SearchResult from '../views/SearchResult'
 
 Vue.use(VueRouter)
 
@@ -79,6 +80,10 @@ const routes = [
   {
     path: '/xiaobianrecommend',
     component: xiaobianrecommend
+  },
+  {
+    path: '/search-result',
+    component: SearchResult
   }
 ]
 

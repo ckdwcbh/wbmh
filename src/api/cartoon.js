@@ -26,7 +26,7 @@ export const getDate = () => {
 
 export const getHotSeatch = () => {
   return request({
-    url: '/api/wbcomic/home/hot_wordst',
+    url: '/api/wbcomic/home/hot_words',
     method: 'GET',
     // 需要请求体参数，就提供 data
     // 需求查询字符串参数，就提供 params
@@ -46,6 +46,16 @@ export const getComicEnd = () => {
     params: {
       location_en: 'ending_works_list',
       _type: 'h5'
+    }
+  })
+}
+
+export const getSerachResult = (word) => {
+  return request({
+    url: '/api/wbcomic/home/search?page_num=1&_type=h5',
+    method: 'GET',
+    params: {
+      word
     }
   })
 }
