@@ -8,13 +8,13 @@
     </div>
 
     <div class="rank_list_title">
-      <div class="list_title_item" @click="rankOne" :class="{'list_title_color': hasClassOne}">阅读榜</div>
-      <div class="list_title_item" @click="rankTwo" :class="{'list_title_color': hasClassTwo}">新作榜</div>
       <div
         class="list_title_item"
-        @click="rankThree"
-        :class="{'list_title_color': hasClassThree}"
-      >综合榜</div>
+        @click="`rank_${index}`"
+        v-for="(item,index) in rankCateList"
+        :key="index"
+        :class="{'list_title_color': index === handleIndex}"
+      >{{ item }}</div>
     </div>
 
     <div class="rankMain">
@@ -68,49 +68,34 @@ export default {
       rankList: [],
       rankCateList: ['阅读榜', '新作榜', '综合榜'],
       showCard: false,
-      handleIndex: 0,
-      hasClassOne: true,
-      hasClassTwo: false,
-      hasClassThree: false
+      handleIndex: 0
     }
   },
 
   methods: {
-    rankOne () {
-      getRankOne().then(
-        res => {
-          this.showCard = true
-          this.hasClassOne = true
-          this.hasClassTwo = false
-          this.hasClassThree = false
-          this.rankList = res.data.data.week
-        }
-      )
+    rank_0 (index) {
+      alert(1)
+      getRankOne().then(res => {
+        this.handleIndex = index
+        this.showCard = true
+        this.rankList = res.data.data.week
+      })
     },
 
-    rankTwo () {
-      getRankTwo().then(
-        res => {
-          this.showCard = true
-          this.hasClassOne = false
-          this.hasClassTwo = true
-          this.hasClassThree = false
-          this.rankList = res.data.data.week
-        }
-      )
+    rank_1 (index) {
+      getRankTwo().then(res => {
+        this.handleIndex = index
+        this.showCard = true
+        this.rankList = res.data.data.week
+      })
     },
 
-    rankThree () {
-      getRankThree().then(
-        res => {
-          this.showCard = true
-          this.showCard = true
-          this.hasClassOne = false
-          this.hasClassTwo = false
-          this.hasClassThree = true
-          this.rankList = res.data.data.week
-        }
-      )
+    rank_2 (index) {
+      getRankThree().then(res => {
+        this.handleIndex = index
+        this.showCard = true
+        this.rankList = res.data.data.week
+      })
     }
   },
 
@@ -242,3 +227,4 @@ body {
   }
 }
 </style>
+

@@ -3,20 +3,11 @@
 // 引入封装好的 axios 的实例
 import request from '@/utils/request'
 
-// 引入 ApiHeader
-// import { format } from '@/utils/apiHeader'
-
-/**
- * 获取首页数据
- * http://manhua.weibo.cn/wbcomic/home/page_recommend_list?mca=h5_recommend_female&_type=h5
- */
+// 获取首页数据
 export const getDate = () => {
-  // return 的是 接口调用之后，axios 返回的 Promise 对象
   return request({
     url: '/api/wbcomic/home/page_recommend_list',
     method: 'GET',
-    // 需要请求体参数，就提供 data
-    // 需求查询字符串参数，就提供 params
     params: {
       mca: 'h5_recommend_female',
       _type: 'h5'
@@ -24,25 +15,22 @@ export const getDate = () => {
   })
 }
 
+// 热门搜索页面
 export const getHotSeatch = () => {
   return request({
     url: '/api/wbcomic/home/hot_words',
     method: 'GET',
-    // 需要请求体参数，就提供 data
-    // 需求查询字符串参数，就提供 params
     params: {
       _type: 'h5'
     }
   })
 }
 
+// 完结页面
 export const getComicEnd = () => {
-  // return 的是 接口调用之后，axios 返回的 Promise 对象
   return request({
     url: '/api/wbcomic/home//recommend_list/recommend_list',
     method: 'GET',
-    // 需要请求体参数，就提供 data
-    // 需求查询字符串参数，就提供 params
     params: {
       location_en: 'ending_works_list',
       _type: 'h5'
@@ -50,12 +38,71 @@ export const getComicEnd = () => {
   })
 }
 
+// 搜索页面
 export const getSerachResult = (word) => {
   return request({
     url: '/api/wbcomic/home/search?page_num=1&_type=h5',
     method: 'GET',
     params: {
       word
+    }
+  })
+}
+
+// 分类页面
+export const getCate = () => {
+  return request({
+    url: '/api/wbcomic/comic/filter_list',
+    method: 'GET',
+    params: {
+      _type: 'h5'
+    }
+  })
+}
+
+export const getCatedate = (a, b, c) => {
+  return request({
+    url: '/api/wbcomic/comic/filter_result',
+    method: 'GET',
+    params: {
+      cate_id: a,
+      end_status: b,
+      comic_pay_status: c,
+      page_num: 1,
+      rows_num: 100,
+      order: '',
+      _type: 'h5'
+    }
+  })
+}
+
+// 排行榜页面
+export const getRankOne = () => {
+  return request({
+    url: '/api/wbcomic/home/rank_read',
+    method: 'GET',
+    params: {
+      _type: 'h5'
+    }
+  })
+}
+
+export const getRankTwo = () => {
+  return request({
+    url: '/api/wbcomic/home/rank_share',
+    method: 'GET',
+    params: {
+      _type: 'h5'
+    }
+  })
+}
+
+export const getRankThree = () => {
+  return request({
+    url: '/api/wbcomic/home/rank',
+    method: 'GET',
+    params: {
+      _type: 'h5'
     }
   })
 }

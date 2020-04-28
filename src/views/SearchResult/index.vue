@@ -10,7 +10,7 @@
           <span class="search_clear_cion" style="display: none;"></span>
         </div>
       </form>
-      <router-link to="/">
+      <router-link to="/search">
         <div class="search_fix_btn">
           <span>取消</span>
         </div>
