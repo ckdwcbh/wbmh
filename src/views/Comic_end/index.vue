@@ -2,12 +2,14 @@
   <div class="page">
     <div class="header">
       <router-link to="/">
-        <p class="headerBack">&lt;</p>
+        <p class="headerBack">
+          <img src="../../assets/img/back.png" alt="">
+        </p>
       </router-link>
       <p class="headerContain">完结</p>
     </div>
-
-    <div class="comicMain" v-if="showCard">
+  <div class="comicMain" v-backtotop>
+    <div class="comicMainBox" v-if="showCard">
       <dl v-for="item in Endlist"
             :key="item.object_id">
         <dd class="comic_cover">
@@ -19,6 +21,8 @@
         </dt>
       </dl>
     </div>
+    <div class="loadBox" v-else></div>
+  </div>
   </div>
 </template>
 
@@ -56,12 +60,9 @@ export default {
     height: 44px;
     .headerBack {
       position: absolute;
-      left: 20px;
+      left: 0px;
       top: 0px;
       height: 44px;
-      line-height: 44px;
-      color: #333;
-      font-size: 24px;
     }
     .headerContain {
       text-align: center;

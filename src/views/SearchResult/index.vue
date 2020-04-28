@@ -6,7 +6,7 @@
           <span class="search_ferame_icon" @click="handleClick(searchVal)">
             <img src="../../assets/img/img_03.png" alt />
           </span>
-          <input :placeholder="keyword" v-model="searchVal"/>
+          <input :placeholder="keyword" v-model="searchVal" />
           <span class="search_clear_cion" style="display: none;"></span>
         </div>
       </form>
@@ -17,19 +17,24 @@
       </router-link>
     </div>
 
-    <div class="searchMain" v-if="showCard">
-      <div class="searchBox" v-for="item in list" :key="item.comic_id">
-        <dl>
-          <dt>
-            <img :src="item.cover" alt />
-          </dt>
-          <dd>
-            <p class="pTop">{{item.name}}</p>
-            <p class="pCenter">{{item.sina_nickname}}</p>
-            <p class="pBottom"><span v-for="p in item.cates" :key="p.cate_id" class="nspan">{{p.cate_name}}</span></p>
-          </dd>
-        </dl>
+    <div class="searchMain">
+      <div v-if="showCard">
+        <div class="searchBox" v-for="item in list" :key="item.comic_id">
+          <dl>
+            <dt>
+              <img :src="item.cover" alt />
+            </dt>
+            <dd>
+              <p class="pTop">{{item.name}}</p>
+              <p class="pCenter">{{item.sina_nickname}}</p>
+              <p class="pBottom">
+                <span v-for="p in item.cates" :key="p.cate_id" class="nspan">{{p.cate_name}}</span>
+              </p>
+            </dd>
+          </dl>
+        </div>
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>
@@ -80,7 +85,6 @@ export default {
   created () {
     this.getSerachResult(this.keyword)
   }
-
 }
 </script>
 
@@ -109,7 +113,7 @@ export default {
       height: 72px;
       .pTop {
         height: 28px;
-        color: #Ff0000;
+        color: #ff0000;
         line-height: 28px;
         font-size: 14px;
       }
@@ -126,7 +130,7 @@ export default {
         line-height: 16px;
         font-size: 12px;
       }
-      .nspan{
+      .nspan {
         margin-right: 4px;
       }
     }

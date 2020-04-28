@@ -21,282 +21,296 @@
       </div>
     </div>
     <!-- 主体 -->
-    <div class="main">
-      <!-- 轮播图 -->
-      <swiper class="my-swiper" v-if="bannerList.length > 0">
-        <swiper-item v-for="item in bannerList" :key="item.info_id">
-          <img :src="item.image_url" alt />
-        </swiper-item>
-      </swiper>
+    <div class="main" v-backtotop>
+      <div v-if="showCard">
+        <!-- 轮播图 -->
+        <swiper class="my-swiper" v-if="bannerList.length > 0">
+          <swiper-item v-for="item in bannerList" :key="item.info_id">
+            <img :src="item.image_url" alt />
+          </swiper-item>
+        </swiper>
 
-      <!-- menu -->
-      <div class="home_menu">
-        <router-link to="/daypub">
-          <div class="home_menu_item">
-            <img
-              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/daypub.7d71503a.png"
-              alt
-              class="menu_img"
-            />
-            <p class="menu_p">放送表</p>
-          </div>
-        </router-link>
-        <router-link to="/cate">
-          <div class="home_menu_item">
-            <img
-              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/catelog.3cfb4bb6.png"
-              alt
-              class="menu_img"
-            />
-            <p class="menu_p">分类</p>
-          </div>
-        </router-link>
-        <router-link to="rank">
-          <div class="home_menu_item">
-            <img
-              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/rank.bfd0ebb0.png"
-              alt
-              class="menu_img"
-            />
-            <p class="menu_p">榜单</p>
-          </div>
-        </router-link>
-        <router-link to="/comic_end">
-          <div class="home_menu_item">
-            <img
-              src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/ending.932e7864.png"
-              alt
-              class="menu_img"
-            />
-            <p class="menu_p">完结</p>
-          </div>
-        </router-link>
-      </div>
-
-      <!-- 精品作品 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">精品佳作</div>
-          <router-link to="/fineworks">
-            <div class="home_recommend_more">更多&gt;</div>
+        <!-- menu -->
+        <div class="home_menu">
+          <router-link to="/daypub">
+            <div class="home_menu_item">
+              <img
+                src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/daypub.7d71503a.png"
+                alt
+                class="menu_img"
+              />
+              <p class="menu_p">放送表</p>
+            </div>
+          </router-link>
+          <router-link to="/cate">
+            <div class="home_menu_item">
+              <img
+                src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/catelog.3cfb4bb6.png"
+                alt
+                class="menu_img"
+              />
+              <p class="menu_p">分类</p>
+            </div>
+          </router-link>
+          <router-link to="rank">
+            <div class="home_menu_item">
+              <img
+                src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/rank.bfd0ebb0.png"
+                alt
+                class="menu_img"
+              />
+              <p class="menu_p">榜单</p>
+            </div>
+          </router-link>
+          <router-link to="/comic_end">
+            <div class="home_menu_item">
+              <img
+                src="//img.manhua.weibo.com/static/b/vcomic-h5/dist/img/ending.932e7864.png"
+                alt
+                class="menu_img"
+              />
+              <p class="menu_p">完结</p>
+            </div>
           </router-link>
         </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div class="home_recommend_comic">
-            <div class="comic_cover_container" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="fineWorks[0].image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{fineWorks[0].title}}</div>
+
+        <!-- 精品作品 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">精品佳作</div>
+            <router-link to="/fineworks">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div class="home_recommend_comic">
+              <div class="comic_cover_container" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="fineWorks[0].image_ext_url" alt />
                 </div>
-                <div
-                  class="comic_cover_desc"
-                  style="font-size: 12px;"
-                >{{fineWorks[0].extra.watching_focus}}</div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="home_recommend_comic_two"
-            v-for="item in fineWorks.slice(1 , 3)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover_container_two" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="item.image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
-                </div>
-                <div class="comic_cover_desc" style="font-size: 12px;">{{item.extra.watching_focus}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 人气作品 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">人气作品</div>
-          <router-link to="/popularWorks">
-            <div class="home_recommend_more">更多&gt;</div>
-          </router-link>
-        </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div
-            class="home_recommend_comic_two"
-            v-for="item in popularWorks.slice(0 , 4)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover_container_two" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="item.image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
-                </div>
-                <div class="comic_cover_desc" style="font-size: 12px;">{{item.extra.watching_focus}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 最新上架 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">最新上架</div>
-          <router-link to="/newArrival">
-            <div class="home_recommend_more">更多&gt;</div>
-          </router-link>
-        </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div
-            class="comic_horizontal_container"
-            v-for="item in newArrival.slice(0 , 4)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover comice_horizontal_cover">
-              <img :src="item.image_ext_url" alt />
-            </div>
-            <div class="comic_cover_horizontal_info">
-              <div class="comic_cover_horizontal_title" style="font-size: 16px;">{{ item.title }}</div>
-              <div class="comic_cover_horizontal_author" style="font-size: 12px;">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEUAAABKkOJLkeNLkONVqv9LkuRMkeNKkOIsiLo4AAAAB3RSTlMA5rWIBktK5LpJhQAAADpJREFUKM9joBFgMSwXdkAWYC4vLzdgUAeSRRABxjKGcAFkAfYCEEIATAHGUoQWTEMR1hIGo74lEgAAomkhe7DLd3MAAAAASUVORK5CYII="
-                  alt
-                />
-                <p v-for="p in item.cate_list" :key="p.cate_id" class="newP">{{ p.cate_cn_name }}</p>
-              </div>
-              <div class="comic_cover_horizontal_author" style="font-size: 12px;">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAyVBMVEUAAAAmJiVJREJ0cm9oaGNubmhzcG1IRUJ2c3BJRUJ0cXB4eHR5d3R5dXVDQz4AAABzcG5iYF1raWZdWlh0cG5QTEpGQ0FPTkx5eXZ7e3s3NzF1dXV3d3d+eHPe3tSkoJ1xa2fIx76ZlpNpZGByb21OSkfCwLhubmlPS0iGgXvOzcR1cW68vLSVkY5/eXR4cm1oaGRgW1dcV1TS0snFw7qQjImCf3yinpqin5iKhoODfXhtZ2Pb29KzsKmOiYVZVFHFxbxsamVmY2Fv8+XpAAAAHXRSTlMAKK/n4uHeuLaun4BkPzcN+vry7ezrlZRQOiojHsW6HFUAAAEbSURBVDjL7ZDXbsMgFECdPZt0b4jtpsSY4Ix6O6Pt/39URYuggOXXRFGOhHR1dXRkX+vMIRg1l18zQWtUKTfd+acjSFuV8nL+ASXO7Njli0G3MdVodAdPZeotiTPqatAsJu1H3R2SKJmUkkRkqLqvlzShOxwAjTyL3AmdvihyP464aILduK/IbVBBsLtW5CsCGAgBEDo5G34fdkK2Jt+KfGcDBoTsoYAP2IcOWxc3iny/+ifDLR986GO2Xj8ocs1bSHkD07+Bu7b3bCnUV1JO4UaR13WhibSQwRbKz2DhmtBEWsoBkj/Iw0ZaXAzk7GQhOx0SYSNtIsJm2kQLV6cXPGymC9ug4GGD3v7NYN+zyhl3vHcNrzO2zpwOPxnwU3esbrlEAAAAAElFTkSuQmCC"
-                  alt
-                />
-                {{item.extra.sina_nickname}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 热门连载 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">热门连载</div>
-          <router-link to="/hotSerial">
-            <div class="home_recommend_more">更多&gt;</div>
-          </router-link>
-        </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div
-            class="home_recommend_comic_two"
-            v-for="item in hotSerial.slice(0 , 2)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover_container_two" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="item.image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{ item.title }}</div>
-                </div>
-                <div class="comic_cover_desc" style="font-size: 12px;">{{item.extra.watching_focus}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 小编推荐 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">小编推荐</div>
-          <router-link to="/xiaobianRecommend">
-            <div class="home_recommend_more">更多&gt;</div>
-          </router-link>
-        </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div class="home_recommend_comic">
-            <div class="comic_cover_container" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="xiaobianRecommend[0].image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{fineWorks[0].title}}</div>
+                  </div>
                   <div
-                    class="comic_cover_title"
-                    style="font-size: 14px;"
-                  >{{xiaobianRecommend[0].title}}</div>
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{fineWorks[0].extra.watching_focus}}</div>
                 </div>
-                <div
-                  class="comic_cover_desc"
-                  style="font-size: 12px;"
-                >{{xiaobianRecommend[0].extra.watching_focus}}</div>
+              </div>
+            </div>
+            <div
+              class="home_recommend_comic_two"
+              v-for="item in fineWorks.slice(1 , 3)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover_container_two" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="item.image_ext_url" alt />
+                </div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{item.extra.watching_focus}}</div>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            class="home_recommend_comic_two"
-            v-for="item in xiaobianRecommend.slice(1 , 3)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover_container_two" style="width: 100%;">
-              <div class="comic_cover">
+        </div>
+
+        <!-- 人气作品 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">人气作品</div>
+            <router-link to="/popularWorks">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div
+              class="home_recommend_comic_two"
+              v-for="item in popularWorks.slice(0 , 4)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover_container_two" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="item.image_ext_url" alt />
+                </div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{item.extra.watching_focus}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 最新上架 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">最新上架</div>
+            <router-link to="/newArrival">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div
+              class="comic_horizontal_container"
+              v-for="item in newArrival.slice(0 , 4)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover comice_horizontal_cover">
                 <img :src="item.image_ext_url" alt />
               </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+              <div class="comic_cover_horizontal_info">
+                <div class="comic_cover_horizontal_title" style="font-size: 16px;">{{ item.title }}</div>
+                <div class="comic_cover_horizontal_author" style="font-size: 12px;">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEUAAABKkOJLkeNLkONVqv9LkuRMkeNKkOIsiLo4AAAAB3RSTlMA5rWIBktK5LpJhQAAADpJREFUKM9joBFgMSwXdkAWYC4vLzdgUAeSRRABxjKGcAFkAfYCEEIATAHGUoQWTEMR1hIGo74lEgAAomkhe7DLd3MAAAAASUVORK5CYII="
+                    alt
+                  />
+                  <p v-for="p in item.cate_list" :key="p.cate_id" class="newP">{{ p.cate_cn_name }}</p>
                 </div>
-                <div class="comic_cover_desc" style="font-size: 12px;">{{item.extra.watching_focus}}</div>
+                <div class="comic_cover_horizontal_author" style="font-size: 12px;">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAyVBMVEUAAAAmJiVJREJ0cm9oaGNubmhzcG1IRUJ2c3BJRUJ0cXB4eHR5d3R5dXVDQz4AAABzcG5iYF1raWZdWlh0cG5QTEpGQ0FPTkx5eXZ7e3s3NzF1dXV3d3d+eHPe3tSkoJ1xa2fIx76ZlpNpZGByb21OSkfCwLhubmlPS0iGgXvOzcR1cW68vLSVkY5/eXR4cm1oaGRgW1dcV1TS0snFw7qQjImCf3yinpqin5iKhoODfXhtZ2Pb29KzsKmOiYVZVFHFxbxsamVmY2Fv8+XpAAAAHXRSTlMAKK/n4uHeuLaun4BkPzcN+vry7ezrlZRQOiojHsW6HFUAAAEbSURBVDjL7ZDXbsMgFECdPZt0b4jtpsSY4Ix6O6Pt/39URYuggOXXRFGOhHR1dXRkX+vMIRg1l18zQWtUKTfd+acjSFuV8nL+ASXO7Njli0G3MdVodAdPZeotiTPqatAsJu1H3R2SKJmUkkRkqLqvlzShOxwAjTyL3AmdvihyP464aILduK/IbVBBsLtW5CsCGAgBEDo5G34fdkK2Jt+KfGcDBoTsoYAP2IcOWxc3iny/+ifDLR986GO2Xj8ocs1bSHkD07+Bu7b3bCnUV1JO4UaR13WhibSQwRbKz2DhmtBEWsoBkj/Iw0ZaXAzk7GQhOx0SYSNtIsJm2kQLV6cXPGymC9ug4GGD3v7NYN+zyhl3vHcNrzO2zpwOPxnwU3esbrlEAAAAAElFTkSuQmCC"
+                    alt
+                  />
+                  {{item.extra.sina_nickname}}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 本周推荐 -->
-      <div class="recommend_block">
-        <div class="home_recommend_header">
-          <div class="home_recommend_title">本周推荐</div>
-          <router-link to="/weekRecommend">
-            <div class="home_recommend_more">更多&gt;</div>
-          </router-link>
-        </div>
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div
-            class="home_recommend_comic_three"
-            v-for="item in weekRecommend.slice(0 , 3)"
-            :key="item.info_id"
-          >
-            <div class="comic_cover_container_three" style="width: 100%;">
-              <div class="comic_cover">
-                <img :src="item.image_ext_url" alt />
-              </div>
-              <div class="comic_cover_info">
-                <div class="comic_cover_titleBox">
-                  <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+        <!-- 热门连载 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">热门连载</div>
+            <router-link to="/hotSerial">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div
+              class="home_recommend_comic_two"
+              v-for="item in hotSerial.slice(0 , 2)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover_container_two" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="item.image_ext_url" alt />
                 </div>
-                <div class="comic_cover_desc" style="font-size: 12px;">{{item.extra.watching_focus}}</div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{ item.title }}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{item.extra.watching_focus}}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="writeDiv"></div>
+        <!-- 小编推荐 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">小编推荐</div>
+            <router-link to="/xiaobianRecommend">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div class="home_recommend_comic">
+              <div class="comic_cover_container" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="xiaobianRecommend[0].image_ext_url" alt />
+                </div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div
+                      class="comic_cover_title"
+                      style="font-size: 14px;"
+                    >{{xiaobianRecommend[0].title}}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{xiaobianRecommend[0].extra.watching_focus}}</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="home_recommend_comic_two"
+              v-for="item in xiaobianRecommend.slice(1 , 3)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover_container_two" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="item.image_ext_url" alt />
+                </div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{item.extra.watching_focus}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <!-- 回到顶部 -->
-      <div class="top-btn">
-        <img src="../../assets/img/backTop.png" alt />
+        <!-- 本周推荐 -->
+        <div class="recommend_block">
+          <div class="home_recommend_header">
+            <div class="home_recommend_title">本周推荐</div>
+            <router-link to="/weekRecommend">
+              <div class="home_recommend_more">更多&gt;</div>
+            </router-link>
+          </div>
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div
+              class="home_recommend_comic_three"
+              v-for="item in weekRecommend.slice(0 , 3)"
+              :key="item.info_id"
+            >
+              <div class="comic_cover_container_three" style="width: 100%;">
+                <div class="comic_cover">
+                  <img :src="item.image_ext_url" alt />
+                </div>
+                <div class="comic_cover_info">
+                  <div class="comic_cover_titleBox">
+                    <div class="comic_cover_title" style="font-size: 14px;">{{item.title}}</div>
+                  </div>
+                  <div
+                    class="comic_cover_desc"
+                    style="font-size: 12px;"
+                  >{{item.extra.watching_focus}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="writeDiv"></div>
+
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>
@@ -358,10 +372,10 @@ body {
   max-width: 900px;
   width: 100%;
 }
-.home{
+.home {
   display: flex;
   height: 100%;
-  flex-direction: column
+  flex-direction: column;
 }
 .header {
   width: 100%;
@@ -651,26 +665,5 @@ body {
   width: 100%;
   height: 8px;
   background: #fff;
-}
-
-.home .top-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-  position: fixed;
-  bottom: 8px;
-  right: 8px;
-  overflow: hidden;
-  display: flex;
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
-  img {
-    width: 20px;
-    height: 20px;
-  }
 }
 </style>

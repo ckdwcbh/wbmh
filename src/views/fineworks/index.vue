@@ -2,24 +2,27 @@
   <div class="page">
     <div class="header">
       <router-link to="/">
-        <p class="headerBack">&lt;</p>
+        <p class="headerBack"><img src="../../assets/img/back.png" alt=""></p>
       </router-link>
       <p class="headerContain">精品佳作</p>
     </div>
 
-    <div class="finewordMain" v-if="showCard">
-      <div class="finewordBox" v-for="item in fineWorks" :key="item.object_id">
-        <dl>
-          <dt>
-            <img :src="item.image_ext_url" alt />
-          </dt>
-          <dd>
-            <p class="pTop">{{item.title}}</p>
-            <p class="pCenter">作者：{{item.extra.sina_nickname}}</p>
-            <p class="pBottom">{{item.extra.watching_focus}}</p>
-          </dd>
-        </dl>
+    <div class="finewordMain" v-backtotop>
+      <div v-if="showCard">
+        <div class="finewordBox" v-for="item in fineWorks" :key="item.object_id">
+          <dl>
+            <dt>
+              <img :src="item.image_ext_url" alt />
+            </dt>
+            <dd>
+              <p class="pTop">{{item.title}}</p>
+              <p class="pCenter">作者：{{item.extra.sina_nickname}}</p>
+              <p class="pBottom">{{item.extra.watching_focus}}</p>
+            </dd>
+          </dl>
+        </div>
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>

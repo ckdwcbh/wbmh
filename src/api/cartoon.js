@@ -106,3 +106,18 @@ export const getRankThree = () => {
     }
   })
 }
+
+// 放送表页面
+// http://manhua.weibo.cn/wbcomic/comic/daypub_list?pub_day=20200427&page_num=1&rows_num=20&_type=h5
+export const getDaypub = () => {
+  return request({
+    url: '/api/wbcomic/comic/daypub_list',
+    method: 'GET',
+    params: {
+      pub_day: 20200427,
+      page_num: 1,
+      rows_num: 20,
+      _type: 'h5'
+    }
+  })
+}

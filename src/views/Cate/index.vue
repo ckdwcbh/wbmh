@@ -2,7 +2,7 @@
   <div class="page-cate">
     <div class="header">
       <router-link to="/">
-        <p class="headerBack">&lt;</p>
+        <p class="headerBack"><img src="../../assets/img/back.png" alt=""></p>
       </router-link>
       <p class="headerContain">分类</p>
     </div>
@@ -41,20 +41,23 @@
       </div>
     </div>
 
-    <div class="cateMain">
-      <div class="home_recommend_comic_two" v-for="item in cateDateList" :key="item.comic_id">
-        <div class="comic_cover_container_two" style="width: 100%;">
-          <div class="comic_cover">
-            <img :src="item.comic_hcover" alt />
-          </div>
-          <div class="comic_cover_info">
-            <div class="comic_cover_titleBox">
-              <div class="comic_cover_title" style="font-size: 14px;">{{item.comic_name}}</div>
-              <div class="comic_cover_desc" style="font-size: 12px;">{{item.comic_desc}}</div>
+    <div class="cateMain" v-backtotop>
+      <div v-if="showCard" class="cateMainBox">
+        <div class="home_recommend_comic_two" v-for="item in cateDateList" :key="item.comic_id">
+          <div class="comic_cover_container_two" style="width: 100%;">
+            <div class="comic_cover">
+              <img :src="item.comic_hcover" alt />
+            </div>
+            <div class="comic_cover_info">
+              <div class="comic_cover_titleBox">
+                <div class="comic_cover_title" style="font-size: 14px;">{{item.comic_name}}</div>
+                <div class="comic_cover_desc" style="font-size: 12px;">{{item.comic_desc}}</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>
@@ -151,12 +154,9 @@ body {
     border: 0;
     .headerBack {
       position: absolute;
-      left: 20px;
+      left: 0px;
       top: 0px;
       height: 44px;
-      line-height: 44px;
-      color: #333;
-      font-size: 24px;
     }
     .headerContain {
       text-align: center;
@@ -202,9 +202,11 @@ body {
     padding-top: 10px;
     flex: 1;
     overflow: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    .cateMainBox {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
     .home_recommend_comic_two {
       width: 158px;
       height: 140px;
@@ -230,6 +232,11 @@ body {
       .comic_cover_desc {
         color: #999;
       }
+    }
+    .loadBox {
+      width: 100%;
+      height: 100%;
+      background: url(../../assets/img/load.png) no-repeat center center;
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="page-rank">
     <div class="header">
       <router-link to="/">
-        <p class="headerBack">&lt;</p>
+        <p class="headerBack"><img src="../../assets/img/back.png" alt=""></p>
       </router-link>
       <p class="headerContain">排行榜</p>
     </div>
@@ -17,42 +17,45 @@
       >综合榜</div>
     </div>
 
-    <div class="rankMain">
-      <div class="recommend_block">
-        <div class="home_recommend_comics threeClassic" v-if="showCard">
-          <div
-            class="comic_horizontal_container"
-            v-for="(item, index) in rankList"
-            :key="item.comic_id"
-          >
-            <div class="comic_cover comice_horizontal_cover">
-              <img :src="item.hcover" alt />
-            </div>
-            <div class="comic_cover_horizontal_info rankMainTitle">
-              <div class="comic_cover_horizontal_title" style="font-size: 16px;">{{ item.name }}</div>
-              <div class="comic_cover_horizontal_author" style="font-size: 12px;">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEUAAABKkOJLkeNLkONVqv9LkuRMkeNKkOIsiLo4AAAAB3RSTlMA5rWIBktK5LpJhQAAADpJREFUKM9joBFgMSwXdkAWYC4vLzdgUAeSRRABxjKGcAFkAfYCEEIATAHGUoQWTEMR1hIGo74lEgAAomkhe7DLd3MAAAAASUVORK5CYII="
-                  alt
-                />
-                <p
-                  v-for="p in item.cate_list.slice(0 , 3)"
-                  :key="p.cate_id"
-                  class="newP"
-                >{{ p.cate_cn_name }}</p>
+    <div class="rankMain" v-backtotop>
+      <div v-if="showCard">
+        <div class="recommend_block">
+          <div class="home_recommend_comics threeClassic" v-if="showCard">
+            <div
+              class="comic_horizontal_container"
+              v-for="(item, index) in rankList"
+              :key="item.comic_id"
+            >
+              <div class="comic_cover comice_horizontal_cover">
+                <img :src="item.hcover" alt />
               </div>
-              <div class="comic_cover_horizontal_author" style="font-size: 12px;">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAyVBMVEUAAAAmJiVJREJ0cm9oaGNubmhzcG1IRUJ2c3BJRUJ0cXB4eHR5d3R5dXVDQz4AAABzcG5iYF1raWZdWlh0cG5QTEpGQ0FPTkx5eXZ7e3s3NzF1dXV3d3d+eHPe3tSkoJ1xa2fIx76ZlpNpZGByb21OSkfCwLhubmlPS0iGgXvOzcR1cW68vLSVkY5/eXR4cm1oaGRgW1dcV1TS0snFw7qQjImCf3yinpqin5iKhoODfXhtZ2Pb29KzsKmOiYVZVFHFxbxsamVmY2Fv8+XpAAAAHXRSTlMAKK/n4uHeuLaun4BkPzcN+vry7ezrlZRQOiojHsW6HFUAAAEbSURBVDjL7ZDXbsMgFECdPZt0b4jtpsSY4Ix6O6Pt/39URYuggOXXRFGOhHR1dXRkX+vMIRg1l18zQWtUKTfd+acjSFuV8nL+ASXO7Njli0G3MdVodAdPZeotiTPqatAsJu1H3R2SKJmUkkRkqLqvlzShOxwAjTyL3AmdvihyP464aILduK/IbVBBsLtW5CsCGAgBEDo5G34fdkK2Jt+KfGcDBoTsoYAP2IcOWxc3iny/+ifDLR986GO2Xj8ocs1bSHkD07+Bu7b3bCnUV1JO4UaR13WhibSQwRbKz2DhmtBEWsoBkj/Iw0ZaXAzk7GQhOx0SYSNtIsJm2kQLV6cXPGymC9ug4GGD3v7NYN+zyhl3vHcNrzO2zpwOPxnwU3esbrlEAAAAAElFTkSuQmCC"
-                  alt
-                />
-                {{item.sina_nickname}}
+              <div class="comic_cover_horizontal_info rankMainTitle">
+                <div class="comic_cover_horizontal_title" style="font-size: 16px;">{{ item.name }}</div>
+                <div class="comic_cover_horizontal_author" style="font-size: 12px;">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEUAAABKkOJLkeNLkONVqv9LkuRMkeNKkOIsiLo4AAAAB3RSTlMA5rWIBktK5LpJhQAAADpJREFUKM9joBFgMSwXdkAWYC4vLzdgUAeSRRABxjKGcAFkAfYCEEIATAHGUoQWTEMR1hIGo74lEgAAomkhe7DLd3MAAAAASUVORK5CYII="
+                    alt
+                  />
+                  <p
+                    v-for="p in item.cate_list.slice(0 , 3)"
+                    :key="p.cate_id"
+                    class="newP"
+                  >{{ p.cate_cn_name }}</p>
+                </div>
+                <div class="comic_cover_horizontal_author" style="font-size: 12px;">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAyVBMVEUAAAAmJiVJREJ0cm9oaGNubmhzcG1IRUJ2c3BJRUJ0cXB4eHR5d3R5dXVDQz4AAABzcG5iYF1raWZdWlh0cG5QTEpGQ0FPTkx5eXZ7e3s3NzF1dXV3d3d+eHPe3tSkoJ1xa2fIx76ZlpNpZGByb21OSkfCwLhubmlPS0iGgXvOzcR1cW68vLSVkY5/eXR4cm1oaGRgW1dcV1TS0snFw7qQjImCf3yinpqin5iKhoODfXhtZ2Pb29KzsKmOiYVZVFHFxbxsamVmY2Fv8+XpAAAAHXRSTlMAKK/n4uHeuLaun4BkPzcN+vry7ezrlZRQOiojHsW6HFUAAAEbSURBVDjL7ZDXbsMgFECdPZt0b4jtpsSY4Ix6O6Pt/39URYuggOXXRFGOhHR1dXRkX+vMIRg1l18zQWtUKTfd+acjSFuV8nL+ASXO7Njli0G3MdVodAdPZeotiTPqatAsJu1H3R2SKJmUkkRkqLqvlzShOxwAjTyL3AmdvihyP464aILduK/IbVBBsLtW5CsCGAgBEDo5G34fdkK2Jt+KfGcDBoTsoYAP2IcOWxc3iny/+ifDLR986GO2Xj8ocs1bSHkD07+Bu7b3bCnUV1JO4UaR13WhibSQwRbKz2DhmtBEWsoBkj/Iw0ZaXAzk7GQhOx0SYSNtIsJm2kQLV6cXPGymC9ug4GGD3v7NYN+zyhl3vHcNrzO2zpwOPxnwU3esbrlEAAAAAElFTkSuQmCC"
+                    alt
+                  />
+                  {{item.sina_nickname}}
+                </div>
               </div>
+              <div class="rankImg" :class="`rank-${index+1}`">{{ index | rankIndex }}</div>
             </div>
-            <div class="rankImg" :class="`rank-${index+1}`">{{ index | rankIndex }}</div>
           </div>
         </div>
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>
@@ -77,40 +80,34 @@ export default {
 
   methods: {
     rankOne () {
-      getRankOne().then(
-        res => {
-          this.showCard = true
-          this.hasClassOne = true
-          this.hasClassTwo = false
-          this.hasClassThree = false
-          this.rankList = res.data.data.week
-        }
-      )
+      getRankOne().then(res => {
+        this.showCard = true
+        this.hasClassOne = true
+        this.hasClassTwo = false
+        this.hasClassThree = false
+        this.rankList = res.data.data.week
+      })
     },
 
     rankTwo () {
-      getRankTwo().then(
-        res => {
-          this.showCard = true
-          this.hasClassOne = false
-          this.hasClassTwo = true
-          this.hasClassThree = false
-          this.rankList = res.data.data.week
-        }
-      )
+      getRankTwo().then(res => {
+        this.showCard = true
+        this.hasClassOne = false
+        this.hasClassTwo = true
+        this.hasClassThree = false
+        this.rankList = res.data.data.week
+      })
     },
 
     rankThree () {
-      getRankThree().then(
-        res => {
-          this.showCard = true
-          this.showCard = true
-          this.hasClassOne = false
-          this.hasClassTwo = false
-          this.hasClassThree = true
-          this.rankList = res.data.data.week
-        }
-      )
+      getRankThree().then(res => {
+        this.showCard = true
+        this.showCard = true
+        this.hasClassOne = false
+        this.hasClassTwo = false
+        this.hasClassThree = true
+        this.rankList = res.data.data.week
+      })
     }
   },
 
@@ -149,12 +146,9 @@ body {
     border: 0;
     .headerBack {
       position: absolute;
-      left: 20px;
+      left: 0px;
       top: 0px;
       height: 44px;
-      line-height: 44px;
-      color: #333;
-      font-size: 24px;
     }
     .headerContain {
       text-align: center;

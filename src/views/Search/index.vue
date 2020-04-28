@@ -6,7 +6,7 @@
           <span class="search_ferame_icon" @click="handleClick(searchVal)">
             <img src="../../assets/img/img_03.png" alt />
           </span>
-          <input placeholder="请输入搜索关键字" v-model="searchVal"/>
+          <input placeholder="请输入搜索关键字" v-model="searchVal" />
           <span class="search_clear_cion" style="display: none;"></span>
         </div>
       </form>
@@ -17,45 +17,50 @@
       </router-link>
     </div>
 
-    <div class="search_footer">
-      <div class="search_page" style>
-        <div class="hot_search" v-if="showCard">
-          <div class="hot_serch_header">
-            <div class="search_title">热门搜索</div>
-            <div class="search_icon refresh">
-              <img src="../../assets/img/img_07.png" alt />
+    <div class="sectchMain">
+      <div v-if="showCard">
+        <div class="search_footer">
+          <div class="search_page" style>
+            <div class="hot_search" v-if="showCard">
+              <div class="hot_serch_header">
+                <div class="search_title">热门搜索</div>
+                <div class="search_icon refresh">
+                  <img src="../../assets/img/img_07.png" alt />
+                </div>
+              </div>
+              <ul class="hot_search_conent">
+                <li
+                  class="search_label"
+                  v-for="item in hotSeatch.slice(0 , 12)"
+                  :key="item.object_id"
+                  @click="handleClick(item.title)"
+                >
+                  <span>{{item.title}}</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <ul class="hot_search_conent">
-            <li
-              class="search_label"
-              v-for="item in hotSeatch.slice(0 , 12)"
-              :key="item.object_id"
-              @click="handleClick(item.title)"
-            >
-              <span>{{item.title}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="hot_search hosity">
-        <div class="hot_serch_header">
-          <div class="search_title">搜索历史</div>
-          <div class="search_icon clear" @click="clearHistory">
-            <img src="../../assets/img/img_11.png" alt />
+          <div class="hot_search hosity">
+            <div class="hot_serch_header">
+              <div class="search_title">搜索历史</div>
+              <div class="search_icon clear" @click="clearHistory">
+                <img src="../../assets/img/img_11.png" alt />
+              </div>
+            </div>
+            <ul class="hot_search_conent">
+              <li
+                class="search_label"
+                v-for="item in historySearchList"
+                :key="item"
+                @click="handleClick(item)"
+              >
+                <span class="search_label_text">{{ item }}</span>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="hot_search_conent">
-          <li
-            class="search_label"
-            v-for="item in historySearchList"
-            :key="item"
-            @click="handleClick(item)"
-          >
-            <span class="search_label_text">{{ item }}</span>
-          </li>
-        </ul>
       </div>
+      <div class="loadBox" v-else></div>
     </div>
   </div>
 </template>
@@ -129,8 +134,10 @@ export default {
 
 <style lang="scss" sscoped>
 .page-search {
+  display: flex;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
+  flex-direction: column;
 }
 
 .search_header {
@@ -279,5 +286,10 @@ export default {
       margin: auto;
     }
   }
+}
+
+.sectchMain {
+  flex: 1;
+  overflow: auto;
 }
 </style>
