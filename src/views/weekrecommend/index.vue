@@ -9,7 +9,7 @@
 
     <div class="finewordMain" v-backtotop>
       <div v-if="showCard">
-        <div class="finewordBox" v-for="item in weekRecommend" :key="item.object_id">
+        <div class="finewordBox" v-for="item in weekRecommend" :key="item.info_id">
           <dl>
             <dt>
               <img :src="item.image_ext_url" alt />
@@ -42,7 +42,7 @@ export default {
     getDate().then(res => {
       console.log(res)
       this.showCard = true
-      this.weekRecommend = res.data.data.h5_recommend_female_week_recommend
+      this.weekRecommend = res.data.data.h5_recommend_male_week_recommend
     })
   }
 }

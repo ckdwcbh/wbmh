@@ -351,14 +351,14 @@ export default {
     getDate().then(res => {
       console.log(res)
       this.showCard = true
-      this.bannerList = res.data.data.h5_recommend_female_rotation_map
-      this.fineWorks = res.data.data.h5_recommend_female_fine_works
-      this.hotSerial = res.data.data.h5_recommend_female_hot_serial
-      this.newArrival = res.data.data.h5_recommend_female_new_arrival
-      this.popularWorks = res.data.data.h5_recommend_female_popular_works
-      this.weekRecommend = res.data.data.h5_recommend_female_week_recommend
+      this.bannerList = res.data.data.h5_recommend_male_rotation_map
+      this.fineWorks = res.data.data.h5_recommend_male_fine_works
+      this.hotSerial = res.data.data.h5_recommend_male_hot_serial
+      this.newArrival = res.data.data.h5_recommend_male_new_arrival
+      this.popularWorks = res.data.data.h5_recommend_male_popular_works
+      this.weekRecommend = res.data.data.h5_recommend_male_week_recommend
       this.xiaobianRecommend =
-        res.data.data.h5_recommend_female_xiaobian_recommend
+        res.data.data.h5_recommend_male_xiaobian_recommend
     })
   }
 }

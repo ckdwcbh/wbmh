@@ -9,7 +9,7 @@
 
     <div class="finewordMain" v-backtotop>
       <div v-if="showCard">
-        <div class="finewordBox" v-for="item in xiaobianRecommend" :key="item.object_id">
+        <div class="finewordBox" v-for="item in xiaobianRecommend" :key="item.info_id">
           <dl>
             <dt>
               <img :src="item.image_ext_url" alt />
@@ -43,7 +43,7 @@ export default {
       console.log(res)
       this.showCard = true
       this.xiaobianRecommend =
-        res.data.data.h5_recommend_female_xiaobian_recommend
+        res.data.data.h5_recommend_male_xiaobian_recommend
     })
   }
 }

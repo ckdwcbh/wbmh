@@ -9,7 +9,7 @@
 
     <div class="finewordMain" v-backtotop>
       <div v-if="showCard">
-        <div class="finewordBox" v-for="item in hotSerial" :key="item.object_id">
+        <div class="finewordBox" v-for="item in hotSerial" :key="item.info_id">
           <dl>
             <dt>
               <img :src="item.image_ext_url" alt />
@@ -42,7 +42,7 @@ export default {
     getDate().then(res => {
       console.log(res)
       this.showCard = true
-      this.hotSerial = res.data.data.h5_recommend_female_hot_serial
+      this.hotSerial = res.data.data.h5_recommend_male_hot_serial
     })
   }
 }

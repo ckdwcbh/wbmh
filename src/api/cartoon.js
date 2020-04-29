@@ -9,7 +9,7 @@ export const getDate = () => {
     url: '/api/wbcomic/home/page_recommend_list',
     method: 'GET',
     params: {
-      mca: 'h5_recommend_female',
+      mca: 'h5_recommend_male',
       _type: 'h5'
     }
   })
