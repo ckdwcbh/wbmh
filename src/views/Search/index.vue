@@ -7,14 +7,17 @@
             <img src="../../assets/img/img_03.png" alt />
           </span>
           <input placeholder="请输入搜索关键字" v-model="searchVal" />
-          <span class="search_clear_cion" style="display: none;"></span>
+          <span class="search_clear_cion" v-if="showClear" @click="inputDel"></span>
         </div>
       </form>
-      <router-link to="/">
+      <router-link to="/" v-if="showDel">
         <div class="search_fix_btn">
           <span>取消</span>
         </div>
       </router-link>
+      <div class="search_fix_btn" @click="handleClick(searchVal)" v-else>
+        <span>搜索</span>
+      </div>
     </div>
 
     <div class="sectchMain">
@@ -24,7 +27,7 @@
             <div class="hot_search" v-if="showCard">
               <div class="hot_serch_header">
                 <div class="search_title">热门搜索</div>
-                <div class="search_icon refresh">
+                <div class="search_icon refresh" @click="getIndex">
                   <img src="../../assets/img/img_07.png" alt />
                 </div>
               </div>
@@ -75,7 +78,18 @@ export default {
       hotSeatch: [],
       searchVal: '',
       showCard: false,
-      historySearchList: this.getSearch()
+      historySearchList: this.getSearch(),
+      showDel: true,
+      showClear: false
+    }
+  },
+
+  watch: {
+    searchVal (newVal, oldVal) {
+      if (newVal) {
+        this.showDel = false
+        this.showClear = true
+      }
     }
   },
 
@@ -96,6 +110,15 @@ export default {
           keyword
         }
       })
+    },
+
+    getIndex () {
+      this.hotSeatch.reverse()
+    },
+
+    inputDel () {
+      this.searchVal = ''
+      this.showClear = false
     },
 
     //  保存最近搜索

@@ -7,32 +7,38 @@
             <img src="../../assets/img/img_03.png" alt />
           </span>
           <input :placeholder="keyword" v-model="searchVal" />
-          <span class="search_clear_cion" style="display: none;"></span>
+          <span class="search_clear_cion" @click="$router.back()"></span>
         </div>
       </form>
-      <router-link to="/search">
+      <router-link to="/search" v-if="showDel">
         <div class="search_fix_btn">
           <span>取消</span>
         </div>
       </router-link>
+      <div class="search_fix_btn" @click="handleClick(searchVal)" v-else>
+        <span>搜索</span>
+      </div>
     </div>
 
     <div class="searchMain">
-      <div v-if="showCard">
-        <div class="searchBox" v-for="item in list" :key="item.comic_id">
-          <dl>
-            <dt>
-              <img :src="item.cover" alt />
-            </dt>
-            <dd>
-              <p class="pTop">{{item.name}}</p>
-              <p class="pCenter">{{item.sina_nickname}}</p>
-              <p class="pBottom">
-                <span v-for="p in item.cates" :key="p.cate_id" class="nspan">{{p.cate_name}}</span>
-              </p>
-            </dd>
-          </dl>
+      <div class="hasHeader" v-if="showCard">
+        <div v-if="list.length">
+          <div class="searchBox" v-for="item in list" :key="item.comic_id">
+            <dl>
+              <dt>
+                <img :src="item.cover" alt />
+              </dt>
+              <dd>
+                <p class="pTop">{{item.name}}</p>
+                <p class="pCenter">{{item.sina_nickname}}</p>
+                <p class="pBottom">
+                  <span v-for="p in item.cates" :key="p.cate_id" class="nspan">{{p.cate_name}}</span>
+                </p>
+              </dd>
+            </dl>
+          </div>
         </div>
+        <div class="nothing" v-else></div>
       </div>
       <div class="loadBox" v-else></div>
     </div>
@@ -48,17 +54,25 @@ export default {
       keyword: this.$route.query.keyword,
       showCard: false,
       list: [],
-      searchVal: ''
+      searchVal: '',
+      showDel: true
+      // nothing: true
     }
   },
+
+  watch: {
+    searchVal (newVal, oldVal) {
+      if (newVal) {
+        this.showDel = false
+      }
+    }
+  },
+
   methods: {
     handleClick (keyword) {
-      this.saveSearch(keyword)
-      this.$router.push({
-        path: '/search-result',
-        query: {
-          keyword
-        }
+      getSerachResult(keyword).then(res => {
+        this.showCard = true
+        this.list = res.data.data.data
       })
     },
     saveSearch (keyword) {
@@ -135,5 +149,24 @@ export default {
       }
     }
   }
+}
+
+.search_clear_cion {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: url(../../assets/img/del.png) no-repeat center center;
+  background-size: 20px 20px;
+}
+
+.nothing {
+  width: 100%;
+  height: 100%;
+  background: url(../../assets/img/nothing.png) no-repeat center center;
+}
+
+.hasHeader{
+  height: 100%;
 }
 </style>
