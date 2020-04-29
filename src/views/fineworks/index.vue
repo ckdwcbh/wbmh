@@ -9,7 +9,7 @@
 
     <div class="finewordMain" v-backtotop>
       <div v-if="showCard">
-        <div class="finewordBox" v-for="item in fineWorks" :key="item.info_id">
+        <div class="finewordBox" v-for="item in fineWorks" :key="item.info_id" @click="getBooks(item.object_id)">
           <dl>
             <dt>
               <img :src="item.image_ext_url" alt />
@@ -29,12 +29,24 @@
 
 <script>
 import { getDate } from '@/api/cartoon'
+
 export default {
   name: 'fineworks',
   data () {
     return {
       fineWorks: [],
       showCard: false
+    }
+  },
+
+  methods: {
+    getBooks (bookId) {
+      this.$router.push({
+        path: '/details',
+        query: {
+          bookId
+        }
+      })
     }
   },
 

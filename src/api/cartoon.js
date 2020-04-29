@@ -121,3 +121,15 @@ export const getDaypub = () => {
     }
   })
 }
+
+// http://manhua.weibo.cn/wbcomic/comic/comic_show?comic_id=69693&create_source=h5&_=1588148863467&_type=h5
+// 漫画详情页面
+export const getBook = (bookId) => {
+  return request({
+    url: '/api/wbcomic/comic/comic_show?create_source=h5&_=1588148863467&_type=h5',
+    method: 'GET',
+    params: {
+      comic_id: bookId
+    }
+  })
+}

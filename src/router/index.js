@@ -17,6 +17,7 @@ import popularworks from '../views/popularworks'
 import weekrecommend from '../views/weekrecommend'
 import xiaobianrecommend from '../views/xiaobianrecommend'
 import SearchResult from '../views/SearchResult'
+import comicDetails from '../views/details'
 
 Vue.use(VueRouter)
 
@@ -84,6 +85,10 @@ const routes = [
   {
     path: '/search-result',
     component: SearchResult
+  },
+  {
+    path: '/details',
+    component: comicDetails
   }
 ]
 

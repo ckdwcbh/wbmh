@@ -3,26 +3,25 @@
     <div class="header">
       <router-link to="/">
         <p class="headerBack">
-          <img src="../../assets/img/back.png" alt="">
+          <img src="../../assets/img/back.png" alt />
         </p>
       </router-link>
       <p class="headerContain">完结</p>
     </div>
-  <div class="comicMain" v-backtotop>
-    <div class="comicMainBox" v-if="showCard">
-      <dl v-for="item in Endlist"
-            :key="item.object_id">
-        <dd class="comic_cover">
-          <img :src="item.image_ext_url" alt />
-        </dd>
-        <dt>
-          <div class="dtBox">{{item.title}}</div>
-          <div class="comic_cover_title">{{item.extra.name}}</div>
-        </dt>
-      </dl>
+    <div class="comicMain" v-backtotop>
+      <div class="comicMainBox" v-if="showCard">
+        <dl v-for="item in Endlist" :key="item.object_id" @click="getBooks(item.object_id)">
+          <dd class="comic_cover">
+            <img :src="item.image_ext_url" alt />
+          </dd>
+          <dt>
+            <div class="dtBox">{{item.title}}</div>
+            <div class="comic_cover_title">{{item.extra.name}}</div>
+          </dt>
+        </dl>
+      </div>
+      <div class="loadBox" v-else></div>
     </div>
-    <div class="loadBox" v-else></div>
-  </div>
   </div>
 </template>
 
@@ -36,6 +35,17 @@ export default {
     return {
       Endlist: [],
       showCard: false
+    }
+  },
+
+  methods: {
+    getBooks (bookId) {
+      this.$router.push({
+        path: '/details',
+        query: {
+          bookId
+        }
+      })
     }
   },
 
@@ -80,14 +90,14 @@ export default {
       height: 210px;
       border-radius: 8px;
     }
-    dl{
+    dl {
       margin-bottom: 4px;
     }
-    dt{
+    dt {
       width: 100%;
       height: 28px;
       display: flex;
-      .dtBox{
+      .dtBox {
         width: 32px;
         height: 16px;
         background: #fc7933;
@@ -98,7 +108,7 @@ export default {
         color: #fff;
         margin: auto 10px;
       }
-      .comic_cover_title{
+      .comic_cover_title {
         height: 20px;
         line-height: 20px;
         font-size: 16px;

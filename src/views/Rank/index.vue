@@ -25,6 +25,7 @@
               class="comic_horizontal_container"
               v-for="(item, index) in rankList"
               :key="item.comic_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover comice_horizontal_cover">
                 <img :src="item.hcover" alt />
@@ -86,6 +87,15 @@ export default {
         this.hasClassTwo = false
         this.hasClassThree = false
         this.rankList = res.data.data.week
+      })
+    },
+
+    getBooks (bookId) {
+      this.$router.push({
+        path: '/details',
+        query: {
+          bookId
+        }
       })
     },
 

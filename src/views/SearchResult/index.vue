@@ -23,7 +23,7 @@
     <div class="searchMain">
       <div class="hasHeader" v-if="showCard">
         <div v-if="list.length">
-          <div class="searchBox" v-for="item in list" :key="item.comic_id">
+          <div class="searchBox" v-for="item in list" :key="item.comic_id" @click="getBooks(item.object_id)">
             <dl>
               <dt>
                 <img :src="item.cover" alt />
@@ -56,7 +56,6 @@ export default {
       list: [],
       searchVal: '',
       showDel: true
-      // nothing: true
     }
   },
 
@@ -75,6 +74,16 @@ export default {
         this.list = res.data.data.data
       })
     },
+
+    getBooks (bookId) {
+      this.$router.push({
+        path: '/details',
+        query: {
+          bookId
+        }
+      })
+    },
+
     saveSearch (keyword) {
       let tmp = window.localStorage.getItem('search')
       if (!tmp) {

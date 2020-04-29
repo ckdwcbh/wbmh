@@ -26,7 +26,7 @@
         <!-- 轮播图 -->
         <swiper class="my-swiper" v-if="bannerList.length > 0">
           <swiper-item v-for="item in bannerList" :key="item.info_id">
-            <img :src="item.image_url" alt />
+            <img :src="item.image_url" alt  @click="getBooks(item.object_id)"/>
           </swiper-item>
         </swiper>
 
@@ -85,7 +85,7 @@
           <div class="home_recommend_comics threeClassic" v-if="showCard">
             <div class="home_recommend_comic">
               <div class="comic_cover_container" style="width: 100%;">
-                <div class="comic_cover">
+                <div class="comic_cover" @click="getBooks(fineWorks[0].object_id)">
                   <img :src="fineWorks[0].image_ext_url" alt />
                 </div>
                 <div class="comic_cover_info">
@@ -103,6 +103,7 @@
               class="home_recommend_comic_two"
               v-for="item in fineWorks.slice(1 , 3)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover_container_two" style="width: 100%;">
                 <div class="comic_cover">
@@ -135,6 +136,7 @@
               class="home_recommend_comic_two"
               v-for="item in popularWorks.slice(0 , 4)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover_container_two" style="width: 100%;">
                 <div class="comic_cover">
@@ -167,6 +169,7 @@
               class="comic_horizontal_container"
               v-for="item in newArrival.slice(0 , 4)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover comice_horizontal_cover">
                 <img :src="item.image_ext_url" alt />
@@ -205,6 +208,7 @@
               class="home_recommend_comic_two"
               v-for="item in hotSerial.slice(0 , 2)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover_container_two" style="width: 100%;">
                 <div class="comic_cover">
@@ -235,7 +239,7 @@
           <div class="home_recommend_comics threeClassic" v-if="showCard">
             <div class="home_recommend_comic">
               <div class="comic_cover_container" style="width: 100%;">
-                <div class="comic_cover">
+                <div class="comic_cover" @click="getBooks(xiaobianRecommend[0].object_id)">
                   <img :src="xiaobianRecommend[0].image_ext_url" alt />
                 </div>
                 <div class="comic_cover_info">
@@ -256,6 +260,7 @@
               class="home_recommend_comic_two"
               v-for="item in xiaobianRecommend.slice(1 , 3)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover_container_two" style="width: 100%;">
                 <div class="comic_cover">
@@ -288,6 +293,7 @@
               class="home_recommend_comic_three"
               v-for="item in weekRecommend.slice(0 , 3)"
               :key="item.info_id"
+              @click="getBooks(item.object_id)"
             >
               <div class="comic_cover_container_three" style="width: 100%;">
                 <div class="comic_cover">
@@ -344,6 +350,15 @@ export default {
   methods: {
     sex () {
       this.isSex = !this.isSex
+    },
+
+    getBooks (bookId) {
+      this.$router.push({
+        path: '/details',
+        query: {
+          bookId
+        }
+      })
     }
   },
 
