@@ -268,7 +268,7 @@ html {
     }
     .mask {
       position: absolute;
-      bottom: -1px;
+      bottom: 0px;
       left: 0;
       width: 100%;
       height: 20px;
@@ -583,7 +583,7 @@ html {
         }
         .comment_more {
           padding: 16px 0;
-          padding-bottom: 9px;
+          margin-bottom: 9px;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
           .moreComment {

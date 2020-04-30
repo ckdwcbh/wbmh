@@ -12,6 +12,14 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+
+      '/user': {
+        target: 'http://111.230.178.132:4000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/user': ''
+        }
       }
 
     }
