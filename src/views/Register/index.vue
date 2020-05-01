@@ -35,7 +35,7 @@
             <input type="text" placeholder="请输入用户名" class="comic_input" v-model="Username" />
           </div>
           <div class="button_header form_btn disable" type="button">
-            <button type="button" class="comic_button btn_log" @click="goRegister(Email, Passsword, Username)">注册</button>
+            <el-button :plain="true" @click="goRegister(Email, Passsword, Username)">注册</el-button>
           </div>
         </div>
       </div>
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'register',
 
@@ -58,13 +57,33 @@ export default {
 
   methods: {
     goRegister (Email, Passsword, Username) {
-      if (Email && Passsword && Username) {
-        this.$axios
-          .post('/user/register', { email: Email, password: Passsword, nickname: Username })
-          .then(data => {
-            console.log(data)
-          })
+      var regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+      if (!Email) {
+        this.$message.error('请输入邮箱')
+        return
       }
+      if (!regEmail.test(Email)) {
+        this.$message.error('请输入正确邮箱')
+        return
+      }
+      if (!Passsword) {
+        this.$message.error('请输入密码')
+        return
+      }
+      if (!Username) {
+        this.$message.error('请输入用户名')
+        return
+      }
+      this.$axios
+        .post('/user/register', {
+          email: Email,
+          password: Passsword,
+          nickname: Username
+        })
+        .then(data => {
+          this.$message.success(data.data.msg)
+          this.$router.push('/login')
+        })
     }
   },
 
@@ -187,12 +206,17 @@ export default {
       box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.1);
       border-radius: 4px;
     }
-    .btn_log {
+    .el-button {
       width: 231px;
       height: 48px;
       font-size: 14px;
       border-radius: 4px;
       background: #f75d79;
+    }
+    .is-plain:hover {
+      background: #f75d79;
+      border-color: #409eff;
+      color: #fff;
     }
     button {
       display: block;

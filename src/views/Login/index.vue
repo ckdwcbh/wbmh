@@ -35,7 +35,8 @@
             <span>忘记密码?</span>
           </div>
           <div class="button_header form_btn disable" type="button">
-            <button type="button" class="comic_button btn_log" @click="goLogin(Email, Passsword)">登录</button>
+            <!-- <button type="button" class="comic_button btn_log" @click="goLogin(Email, Passsword)">登录</button> -->
+            <el-button :plain="true" @click="goLogin(Email, Passsword)">登录</el-button>
           </div>
         </div>
       </div>
@@ -57,17 +58,37 @@ export default {
   data () {
     return {
       Email: '',
-      Passsword: ''
+      Passsword: '',
+      token: ''
     }
   },
 
   methods: {
     goLogin (Email, Passsword) {
-      alert(1)
+      var regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+      if (!Email) {
+        this.$message.error('请输入邮箱')
+        return
+      }
+      if (!regEmail.test(Email)) {
+        this.$message.error('请输入正确邮箱')
+        return
+      }
+      if (!Passsword) {
+        this.$message.error('请输入密码')
+        return
+      }
       this.$axios
         .post('/user/login', { email: Email, password: Passsword })
         .then(data => {
           console.log(data)
+          if (data.code !== 0) {
+            this.$message.error(data.data.msg)
+          }
+          this.$message.success(data.data.msg)
+          this.token = data.data.token
+          window.sessionStorage.setItem('token', data.data.token)
+          this.$router.push('/mine')
         })
     }
   }
@@ -131,7 +152,7 @@ export default {
     width: 313px;
     box-sizing: border-box;
     margin: 244px auto;
-    .form_bg .input_outer {
+    .input_outer {
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
       justify-content: space-between;
@@ -206,6 +227,18 @@ export default {
       color: #fff;
       white-space: nowrap;
       background: #f75d79;
+    }
+    .el-button {
+      width: 231px;
+      height: 48px;
+      font-size: 14px;
+      border-radius: 4px;
+      background: #f75d79;
+    }
+    .is-plain:hover {
+      background: #f75d79;
+      border-color: #409eff;
+      color: #fff;
     }
   }
   .third {

@@ -31,7 +31,7 @@
             <img src="../../assets/img/me.png" />
           </div>
         </router-link>
-        <p class="mine-nickname" style="font-size: 16px">戳我立即登录哦QAQ</p>
+        <p class="mine-nickname" style="font-size: 16px">{{userName}}</p>
         <p class="mine-vcoin" style="font-size: 14px">我的墨币: 0</p>
       </div>
       <div class="mine-list">
@@ -84,13 +84,42 @@
           <span class="m-item-nav"></span>
         </div>
       </div>
+      <div class="button_header form_btn disable" type="button" v-if="isLogin">
+        <!-- <button type="button" class="comic_button btn_log" @click="goLogin(Email, Passsword)">登录</button> -->
+        <el-button :plain="true" @click="logOut">退出登录</el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'mine'
+  name: 'mine',
+
+  data () {
+    return {
+      token: window.sessionStorage.getItem('token'),
+      userName: '戳我立即登录哦QAQ',
+      isLogin: false
+    }
+  },
+
+  methods: {
+    logOut () {
+      window.sessionStorage.removeItem('token')
+      window.location.reload()
+    }
+  },
+
+  created () {
+    this.$axios
+      .get('/user/getInfo', { headers: { Authorization: this.token } })
+      .then(data => {
+        console.log(data)
+        this.isLogin = true
+        this.userName = data.data.data.nickname
+      })
+  }
 }
 </script>
 
@@ -229,6 +258,46 @@ export default {
     margin-right: 4px;
     width: 32px;
     height: 32px;
+  }
+}
+.form_btn {
+  margin: 16px auto 0;
+  .disable button {
+    background: #ccc;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 3px 4px 0;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  .btn_log {
+    width: 231px;
+    height: 48px;
+    font-size: 14px;
+    border-radius: 4px;
+    background: #f75d79;
+  }
+  button {
+    display: block;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+    white-space: nowrap;
+    background: #f75d79;
+  }
+  .el-button {
+    width: 231px;
+    height: 48px;
+    font-size: 14px;
+    border-radius: 4px;
+    background: #f75d79;
+  }
+  .is-plain:hover {
+    background: #f75d79;
+    border-color: #409eff;
+    color: #fff;
   }
 }
 </style>
