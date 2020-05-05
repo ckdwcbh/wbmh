@@ -66,17 +66,16 @@
             <div class="comic_bottom_content" v-show="showNow">
               <div class="detail_wrap">
                 <div class="details">
-                  <div class="bold">简介</div>一花一世界，所谓凡世，不过仙魔掌中一粒沙尘。 仙魔一念，人世千载。万里河山，不过镜花水月，人死之后，魂归万界星空。星空深处，便是传说中的仙魔道场。
+                  <div class="bold">简介</div>
+                  {{bookObj.comic.description}}
                 </div>
                 <div class="author">
                   <span class="bold">作者：</span>
                   <div class="author_item">
                     <div class="avatar component_avatar author_avatar">
-                      <img
-                        src="http://tvax2.sinaimg.cn/crop.60.0.561.561.1024/005Wqtddly8fpi5g00ryhj30jg0fl74v.jpg"
-                      />
+                     <img :src=" bookObj.new_author[0].user_avatar" alt />
                     </div>
-                    <span class="author_name">若鸿文化</span>
+                    <span class="author_name">{{bookObj.new_author[0].sina_nickname}}</span>
                   </div>
                 </div>
               </div>

@@ -25,7 +25,7 @@
               class="comic_horizontal_container"
               v-for="(item, index) in rankList"
               :key="item.comic_id"
-              @click="getBooks(item.object_id)"
+              @click="getBooks(item.comic_id)"
             >
               <div class="comic_cover comice_horizontal_cover">
                 <img :src="item.hcover" alt />

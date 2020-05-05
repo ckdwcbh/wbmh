@@ -23,7 +23,7 @@
     <div class="searchMain">
       <div class="hasHeader" v-if="showCard">
         <div v-if="list.length">
-          <div class="searchBox" v-for="item in list" :key="item.comic_id" @click="getBooks(item.object_id)">
+          <div class="searchBox" v-for="item in list" :key="item.comic_id" @click="getBooks(item.comic_id)">
             <dl>
               <dt>
                 <img :src="item.cover" alt />

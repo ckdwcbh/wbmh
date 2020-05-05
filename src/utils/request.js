@@ -6,7 +6,7 @@ import axios from 'axios'
 // 创建一个 axios 的实例对象
 const instance = axios.create({
   // 基准路径
-  baseURL: 'http://localhost:8080',
+  baseURL: process.env.NODE_ENV === 'production' ? 'http://111.230.178.132:8080' :'http://localhost:8080',
   // 超时时间的设置 ms
   timeout: 5000
 })

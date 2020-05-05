@@ -43,7 +43,7 @@
 
     <div class="cateMain" v-backtotop>
       <div v-if="showCard" class="cateMainBox">
-        <div class="home_recommend_comic_two" v-for="item in cateDateList" :key="item.comic_id" @click="getBooks(item.object_id)">
+        <div class="home_recommend_comic_two" v-for="item in cateDateList" :key="item.comic_id" @click="getBooks(item.comic_id)">
           <div class="comic_cover_container_two" style="width: 100%;">
             <div class="comic_cover">
               <img :src="item.comic_hcover" alt />
